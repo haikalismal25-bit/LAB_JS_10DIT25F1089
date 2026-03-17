@@ -1,0 +1,37 @@
+<style>
+    :root {
+        --primary-purple: #5d46b8;
+        --bg-soft: #f0f4f8;
+    }
+
+    body {
+        background-color: var(--bg-soft);
+        font-family: 'Segoe UI', sans-serif;
+        min-height: 100vh; /* Pastikan body penuh skrin */
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container.mt-4 {
+        flex: 1; /* Tolak footer ke bawah jika content sedikit */
+    }
+
+    /* Memperbaiki logo navbar */
+    .navbar-brand img {
+        height: 60px; /* Kecilkan sikit supaya navbar lebih kemas */
+        width: auto;
+    }
+
+    /* Memastikan Carousel Image tidak pecah */
+    .carousel-item img {
+        height: 400px;
+        object-fit: cover;
+    }
+
+    /* Thumbnail styling */
+    .active-thumb {
+        border: 3px solid var(--primary-purple) !important;
+        opacity: 1 !important;
+        transform: scale(1.1);
+    }
+</style>
