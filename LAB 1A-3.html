@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JAVASCRIPT - LAB 1A-3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .lab-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #0d6efd;
+        }
+
+        .result-box {
+            background: #f1f3f5;
+            padding: 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+            border: 1px dashed #dee2e6;
+        }
+
+        .grade-a {
+            color: #2ecc71;
+        }
+
+        /* Green for A */
+        .grade-b {
+            color: #3498db;
+        }
+
+        /* Blue for B */
+        .grade-f {
+            color: #e74c3c;
+        }
+
+        /* Red for F */
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center fw-bold" href="index.html">
+                <img src="images/logo.png" alt="Logo" width="100" height="120" class="me-2">
+                JAVASCRIPT
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto d-flex gap-3">
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            LAB 1A
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="LAB 1A-1.html">LAB 1A-1</a></li>
+                            <li><a class="dropdown-item" href="LAB 1A-2.html">LAB 1A-2</a></li>
+                            <li><a class="dropdown-item" href="LAB 1A-3.html">LAB 1A-3</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="LAB 1B.html">LAB 1B</a></li>
+                    <li class="nav-item"><a class="nav-link" href="LAB 1C.html">LAB 1C</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            LAB 2A
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="LAB 2A - PORTFOLIO.html">LAB 2A - PORTFOLIO</a></li>
+                            <li><a class="dropdown-item" href="LAB 2A - PASSPORT.html">LAB 2A - PASSPORT</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            REPORT
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="REPORT LAB 1A-1.pdf">REPORT LAB 1A-1</a></li>
+                            <li><a class="dropdown-item" href="REPORT LAB 1A-2.pdf">REPORT LAB 1A-2</a></li>
+                            <li><a class="dropdown-item" href="REPORT 2A-PORTFOLIO.pdf">REPORT 2A-PORTFOLIO</a></li>
+                            <li><a class="dropdown-item" href="REPORT 2A-PASSPORT.pdf">REPORT 2A-PASSPORT</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="text-center my-5">
+        <h1 class="fw-bold">LAB 1A-3</h1>
+        <p class="text-muted">Student Grade Management System (Comparison & Logical Operators)</p>
+    </header>
+
+    <main class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="lab-card">
+                    <h2 class="mb-4">Calculate Final Grade</h2>
+                    <p class="text-secondary small">*Input marks for Practical Work (0-100)</p>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Practical Work 1 (PW1)</label>
+                            <input type="number" id="pw1" class="form-control" placeholder="0-100">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Practical Work 2 (PW2)</label>
+                            <input type="number" id="pw2" class="form-control" placeholder="0-100">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary w-100 mt-4 py-2 fw-bold" onclick="calculateGrade()">
+                        Process Grade
+                    </button>
+
+                    <div id="resultArea" class="result-box text-center" style="display:none;">
+                        <span id="gradeText"></span>
+                    </div>
+                </div>
+
+                <div class="alert alert-info">
+                    <strong>Logic Used:</strong>
+                    <ul class="mb-0">
+                        <li>Validation: PW1 & PW2 must be numbers (<code>!isNaN</code>).</li>
+                        <li>Logical AND (<code>&&</code>): Marks must be between 0 and 100.</li>
+                        <li>Comparison: Average &ge; 80 (Grade A), &ge; 50 (Grade B), else (Grade F).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">2026 WEB DESIGN TECHNOLOGY | HAIKAL ISMAL (10DIT25F1089)</p>
+        </div>
+    </footer>
+
+
+    <script>
+        function calculateGrade() {
+            // Get values from input
+            const m1 = document.getElementById('pw1').value;
+            const m2 = document.getElementById('pw2').value;
+
+            const pw1 = Number(m1);
+            const pw2 = Number(m2);
+
+            const resultArea = document.getElementById('resultArea');
+            const gradeText = document.getElementById('gradeText');
+
+            // 1. Validation Logic
+            // Checks if inputs are numbers and within 0-100 range using Logical AND (&&)
+            if (m1 === "" || m2 === "" || isNaN(pw1) || isNaN(pw2) || pw1 < 0 || pw1 > 100 || pw2 < 0 || pw2 > 100) {
+                alert("Error: Please enter valid marks between 0 and 100 for both fields!");
+                resultArea.style.display = "none";
+                return;
+            }
+
+            // 2. Calculation
+            const average = (pw1 + pw2) / 2;
+            let grade = "";
+            let cssClass = "";
+
+            // 3. Comparison Operators Logic
+            if (average >= 80) {
+                grade = "EXCELLENT (GRADE A)";
+                cssClass = "grade-a";
+            } else if (average >= 50) {
+                grade = "GOOD (GRADE B)";
+                cssClass = "grade-b";
+            } else {
+                grade = "FAILED (GRADE F)";
+                cssClass = "grade-f";
+            }
+
+            // Display Result
+            resultArea.style.display = "block";
+            gradeText.innerHTML = `Average: ${average.toFixed(2)} <br> <span class="${cssClass}">${grade}</span>`;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
